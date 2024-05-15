@@ -18,6 +18,11 @@ class DataCenter:
 
 
     def dict2record(self, filename: str):
+        """
+         Read the data in the file and filter the vehicle data with the number of records >= train_nums to sort out the vehicle data.
+         :param filename: file address to store vehicle information
+         :return: processed data
+         """
         f = open(filename, 'r', encoding="utf-8")
         record = {}  # {id:[id,time,x,y,length,width,type,v,a]}
         for lines in f.readlines():
@@ -43,6 +48,12 @@ class DataCenter:
         return record
 
     def dealRecord(self, full_record: dict):
+        """
+         Convert the data in the file into a dictionary. The dictionary stores the changing values of x, y, v, and a for each vehicle in adjacent periods.
+         And normalize the change values by attributes for prediction
+         :param full_record: Dictionary to store vehicle information after sorting
+         :return: Normalized vehicle change value information, maximum and minimum values of each variable
+         """
         dealed_re = {key: full_record[key] for key in full_record.keys()}
         for vid in full_record.keys():
             dealed_re[vid] = []
@@ -68,6 +79,12 @@ class DataCenter:
 
 
     def z_score(self, record: dict, filepath: str):
+        """
+         Calculate the mean and standard deviation in the record and use it to detect the data
+         :param record:
+         :param filepath:
+         :return:
+         """
         f = open(filepath, 'a')
         # del_id = []
         # z_scored_re = []
@@ -97,7 +114,11 @@ class DataCenter:
         f.close()
 
     def train_model(self, record: dict):
-
+        """
+         Use LSTM to predict vehicle data
+         :param record: Vehicle data, each line contains the changing values of the four elements x, y, speed, and acceleration
+         :return: prediction result, including four elements: x, y, velocity, and acceleration
+         """
         data_list = list(record.values())
         sequences = {}
         for i, vid in enumerate(record.keys()):
@@ -151,4 +172,3 @@ if __name__ == "__main__":
     record = dc.dict2record('./实验/detection/data/data_train1.csv')
     d_record, minlist, maxlist = dc.dealRecord(record)
     model = dc.train_model(d_record)
-    # dc.z_score(record,"max_min.csv")

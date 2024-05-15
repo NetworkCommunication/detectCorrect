@@ -21,7 +21,7 @@ if __name__ == "__main__":
     dealTotalTime = 0
     corrNumber = {}
     for t in vehicle_time:
-        print("当前系统时间:",t)
+        print("Current system time:",t)
         start_time = time.time()
         bsm_t = vehicle.send_messages(t)
         rsu.deal_record(bsm_t)

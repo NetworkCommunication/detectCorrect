@@ -30,6 +30,6 @@ If users encounter environmental problems and reference package version problems
 
 The first step in running the algorithm involves processing the original dataset, for which the code can be found in "process_data.py". After the data has been processed, you can run either "main.py" or "my_main.py". The former demonstrates the results without adopting a time optimization scheme, while the latter shows the effects of using a time optimization method. "Class_DataCenter0413.py, Class_rsu_0413.py, and Class_vehicle.py" are used to simulate the data center, RSU, and vehicles, respectively. The final analysis of the experiment results can be referred to in "result_analyze.py and my_result_analyze.py".
 
-## Statement
+## Statement 
 
 If you want to know more, please refer to our paper "A Collaborative Error Detection and Correction Scheme for Safety Message in V2X".

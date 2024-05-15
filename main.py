@@ -24,7 +24,7 @@ if __name__ == "__main__":
         bsm_t = vehicle.send_messages(t)
         rsu.deal_record(bsm_t)
         for v_id in bsm_t.keys():
-            corr_project = rsu.process_record(v_id, t)
+            corr_project = rsu.process_record(v_id, t)  #The result of the Corr_project obtained here is the result after the vehicle is corrected and processed
             # vehicle.receive_pro(v_id, corr_project)
         end_time = time.time()
 

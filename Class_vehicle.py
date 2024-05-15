@@ -4,7 +4,11 @@ class Vehicles:
     """bsms={t:{id:[t,x,y,v,a,...]}}"""
 
     def deal_messages(self, filepath):  # '.\\data_test2_err.csv'
-
+        """
+         Put the vehicle information in the file in the vehicle class
+         :param filepath: file address to save vehicle information
+         :return: vehicle information time
+         """
         with open(filepath, 'r') as f:
             for line in f.readlines():
                 line = line.split(",")
@@ -21,6 +25,11 @@ class Vehicles:
         return self.bsms.keys()
 
     def send_messages(self, now_time):
+        """
+         Read the current time and return the vehicle information corresponding to the time
+         :param now_time: time
+         :return: Vehicle information corresponding to the time. If the correction plan has been obtained before, the corrected information will be returned. Otherwise, the pre-corrected information will be returned.
+         """
         t = str(now_time)
         for vid in self.bsms[t]:
             if vid in self.corr_project.keys():

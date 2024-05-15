@@ -71,8 +71,6 @@ class DataCenter:
 
     def z_score(self, record: dict, filepath: str):
         f = open(filepath, 'a')
-        # del_id = []
-        # z_scored_re = []
         x = []
         y = []
         v = []
